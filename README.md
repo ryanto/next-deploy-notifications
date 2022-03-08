@@ -22,7 +22,7 @@ function App({ children }) {
 }
 ```
 
-![]()
+![Deploy notification](https://raw.githubusercontent.com/ryanto/next-deploy-notifications/main/public/deploy.gif)
 
 ## Installation
 
