@@ -11,6 +11,7 @@ function App({ children }) {
   return (
     <div>
       <main>Your app</main>
+
       {hasNewDeploy && (
         <Notification>
           New version available!
