@@ -23,7 +23,7 @@ function App() {
 }
 ```
 
-![Deploy notification](https://raw.githubusercontent.com/ryanto/next-deploy-notifications/main/public/deploy.gif)
+![Deploy notification](https://raw.githubusercontent.com/ryanto/next-deploy-notifications/main/misc/deploy.gif)
 
 ## Installation
 

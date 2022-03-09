@@ -7,10 +7,7 @@ type NextRouteHandler = (
 ) => Promise<void>;
 
 let getDevGitVersion = () => {
-  let rev = fs
-    .readFileSync('.git/HEAD')
-    .toString()
-    .trim();
+  let rev = fs.readFileSync('.git/HEAD').toString().trim();
   if (rev.indexOf(':') === -1) {
     return rev;
   } else {
