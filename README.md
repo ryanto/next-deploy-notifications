@@ -1,11 +1,11 @@
 # Next.js Deploy Notifications
 
-The goal of this library is to let your users know when you've deployed a new version of your Next.js application.
+This library lets your users know when you've deployed a new version of your Next.js application.
 
 ```jsx
 import { hasNewDeploy } from 'next-deploy-notifications';
 
-function App({ children }) {
+function App() {
   let hasNewDeploy = useHasNewDeploy();
 
   return (
@@ -39,6 +39,8 @@ yarn add next-deploy-notifications
 
 ### API Route
 
+You'll first need to create a new API route in order for this library to work correctly. Paste the following into `pages/api/has-new-deploy.js`.
+
 ```js
 // pages/api/has-new-deploy.js
 
@@ -47,12 +49,26 @@ export { APIRoute as default } from 'next-deploy-notifications';
 
 ## Usage
 
-```jsx
-import { hasNewDeploy } from 'next-deploy-notifications';
+Next, the `useHasNewDeploy` hook will tell you when a new version of your application has been deployed. This hook returns a boolean that's `true` when there's a new deploy.
 
-let hasNewDeploy = useHasNewDeploy();
+```jsx
+import { useHasNewDeploy } from 'next-deploy-notifications';
+
+function Page() {
+  let hasNewDeploy = useHasNewDeploy();
+
+  return hasNewDeploy && <div>A new deploy is available!</div>;
+}
 ```
 
-## Customizing
+## Production environments
 
-### Non-vercel hosts
+This add works out of the box with the following hosting providers:
+
+- Vercel
+
+  Note: Make sure you're application has "Automatically expose System Environment Variables" checked. This can be found in the Vercel dashboard under Settings > Environment variables.
+
+### Other hosts
+
+Coming soon.
