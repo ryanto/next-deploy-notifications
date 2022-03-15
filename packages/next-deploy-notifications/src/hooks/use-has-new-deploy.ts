@@ -25,7 +25,7 @@ type HookValues = {
   version: string;
 };
 
-type UseHasNewDeploy = (options: HookOptions) => HookValues;
+type UseHasNewDeploy = (options?: HookOptions) => HookValues;
 
 let useHasNewDeploy: UseHasNewDeploy = (options = {}) => {
   let [hasNewDeploy, setHasNewDeploy] = useState<boolean>(false);
