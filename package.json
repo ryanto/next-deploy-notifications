@@ -2,6 +2,8 @@
   "private": true,
   "workspaces": ["packages/next-deploy-notifications", "packages/test-app"],
   "scripts": {
-    "dev": "yarn workspace next-deploy-notifications start"
+    "dev": "yarn workspace next-deploy-notifications dev",
+    "test-app": "yarn workspace test-app dev",
+    "test": "yarn workspace test-app cypress"
   }
 }

@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "next": "12.1.0",
+    "next-deploy-notifications": "0.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "cypress": "^9.5.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0"
   }
