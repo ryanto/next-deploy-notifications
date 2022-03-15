@@ -2,6 +2,8 @@
 
 This library lets your users know when you've deployed a new version of your Next.js application.
 
+![Deploy notification](https://raw.githubusercontent.com/ryanto/next-deploy-notifications/main/misc/deploy.gif)
+
 ```jsx
 import { useHasNewDeploy } from "next-deploy-notifications";
 
@@ -22,8 +24,6 @@ function App() {
   );
 }
 ```
-
-![Deploy notification](https://raw.githubusercontent.com/ryanto/next-deploy-notifications/main/misc/deploy.gif)
 
 ## Installation
 
@@ -49,7 +49,7 @@ export { APIRoute as default } from "next-deploy-notifications/api";
 
 ## Usage
 
-The `useHasNewDeploy` hook will tell you when a new version of your application has been deployed. This hook returns a `hasNewDeploy` property that's a boolean. It's `true` whenever there's a new deploy!
+The `useHasNewDeploy` hook will tell you when a new version of your application has been deployed. This hook returns a `hasNewDeploy` property that's `true` whenever there's a new deploy!
 
 ```jsx
 import { useHasNewDeploy } from "next-deploy-notifications";
