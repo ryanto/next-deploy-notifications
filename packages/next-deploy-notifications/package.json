@@ -16,6 +16,7 @@
   "files": [
     "dist"
   ],
+  "repository": "github:ryanto/next-deploy-notifications",
   "engines": {
     "node": ">=14"
   },
