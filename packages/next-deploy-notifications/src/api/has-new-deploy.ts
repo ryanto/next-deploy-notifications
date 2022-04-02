@@ -21,6 +21,9 @@ let findGitRoot = (path = __dirname): string | false => {
 let isVercel: IsEnvironment = () => !!process.env.VERCEL;
 let getVercelVersion: GetVersion = () => `${process.env.VERCEL_GIT_COMMIT_SHA}`;
 
+let isRender: IsEnvironment = () => !!process.env.RENDER;
+let getRenderVersion: GetVersion = () => `${process.env.RENDER_GIT_COMMIT}`;
+
 let isGit: IsEnvironment = () => !!findGitRoot();
 let getGitVersion: GetVersion = async () => {
   let root = findGitRoot();
@@ -60,6 +63,8 @@ let makeRouteHandler = (options: Options = {}): Handler => {
       ? options.version()
       : isVercel()
       ? getVercelVersion()
+      : isRender()
+      ? getRenderVersion()
       : isGit()
       ? getGitVersion()
       : getUnknownVersion();

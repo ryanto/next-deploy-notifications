@@ -21,6 +21,8 @@ export default defineConfig({
   define: {
     "process.env.VERCEL": "process.env.VERCEL",
     "process.env.VERCEL_GIT_COMMIT_SHA": "process.env.VERCEL_GIT_COMMIT_SHA",
+    "process.env.RENDER": "process.env.RENDER",
+    "process.env.RENDER_GIT_COMMIT": "process.env.RENDER_GIT_COMMIT",
   },
   build: {
     lib: {
