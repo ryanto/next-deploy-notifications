@@ -81,7 +81,9 @@ This library works out of the box with the following hosting providers:
 
 - Vercel
 
-  Note: Make sure you're application has "Automatically expose System Environment Variables" checked. This can be found in the Vercel dashboard under Settings > Environment variables.
+  _Note: Make sure you're application has "Automatically expose System Environment Variables" checked. This can be found in the Vercel dashboard under Settings > Environment variables._
+
+- Render
 
 ### Other hosts
 
