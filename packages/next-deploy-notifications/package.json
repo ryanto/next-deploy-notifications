@@ -13,6 +13,13 @@
     }
   },
   "typings": "dist/types.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
