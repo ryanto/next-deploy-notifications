@@ -8,7 +8,7 @@ This library lets your users know when you've deployed a new version of your Nex
 import { useHasNewDeploy } from "next-deploy-notifications";
 
 function App() {
-  let { hasNewDeploy } = useHasNewDeploy();
+  const { hasNewDeploy } = useHasNewDeploy();
 
   return (
     <div>
@@ -55,7 +55,7 @@ The `useHasNewDeploy` hook will tell you when a new version of your application 
 import { useHasNewDeploy } from "next-deploy-notifications";
 
 function Page() {
-  let { hasNewDeploy } = useHasNewDeploy();
+  const { hasNewDeploy } = useHasNewDeploy();
 
   return hasNewDeploy && <div>A new deploy is available!</div>;
 }

@@ -1,7 +1,7 @@
 import { useHasNewDeploy } from "next-deploy-notifications";
 
 export default function Page() {
-  let { version } = useHasNewDeploy({
+  const { version } = useHasNewDeploy({
     endpoint: "/api/default-endpoint",
   });
 

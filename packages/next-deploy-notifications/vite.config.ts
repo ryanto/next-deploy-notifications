@@ -8,7 +8,7 @@ const pkg = JSON.parse(
   readFileSync(new URL("./package.json", import.meta.url), { encoding: "utf8" })
 );
 
-let externalDependencies = ["dependencies", "peerDependencies"].reduce(
+const externalDependencies = ["dependencies", "peerDependencies"].reduce(
   (result, group) => [
     ...result,
     ...(pkg[group] ? Object.keys(pkg[group]) : []),
@@ -55,10 +55,10 @@ function singleTypeDef() {
     name: "Generate a single typings file for all entry points.",
 
     async generateBundle(options, bundle) {
-      let files = Object.keys(bundle);
-      let defFiles = files.filter((file) => file.match(/^\w+\.d\.ts$/));
-      let types = defFiles.map((file) => bundle[file].source);
-      let content = types.join("\n");
+      const files = Object.keys(bundle);
+      const defFiles = files.filter((file) => file.match(/^\w+\.d\.ts$/));
+      const types = defFiles.map((file) => bundle[file].source);
+      const content = types.join("\n");
       this.emitFile({
         type: "asset",
         fileName: "types.d.ts",

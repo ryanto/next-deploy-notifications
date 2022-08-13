@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { useInterval } from "interval-hooks";
 import useWindowFocus from "use-window-focus";
 
-let getCurrentVersion = async (endpoint: string) => {
-  let response = await fetch(endpoint);
+const getCurrentVersion = async (endpoint: string) => {
+  const response = await fetch(endpoint);
   if (response.status > 400) {
     console.error(
       "[next-deploy-notifications] Could not find current app version. Did you setup the API route?"
     );
     return { version: "unknown" };
   } else {
-    let json = await response.json();
+    const json = await response.json();
     return json;
   }
 };
@@ -28,34 +28,34 @@ type HookValues = {
 
 type UseHasNewDeploy = (options?: HookOptions) => HookValues;
 
-let useHasNewDeploy: UseHasNewDeploy = (options = {}) => {
-  let debug = (message: string) => {
+const useHasNewDeploy: UseHasNewDeploy = (options = {}) => {
+  const debug = (message: string) => {
     if (options.debug) {
       console.log(...["[Deploy notifications] ", message]);
     }
   };
 
-  let [hasNewDeploy, setHasNewDeploy] = useState<boolean>(false);
-  let [currentVersion, setCurrentVersion] = useState<string>("unknown");
-  let [lastFetched, setLastFetched] = useState<number>();
+  const [hasNewDeploy, setHasNewDeploy] = useState<boolean>(false);
+  const [currentVersion, setCurrentVersion] = useState<string>("unknown");
+  const [lastFetched, setLastFetched] = useState<number>();
 
-  let windowFocused = useWindowFocus();
-  let interval = options.interval ?? 30_000;
-  let endpoint = options.endpoint ?? "/api/has-new-deploy";
-  let isUnknown = currentVersion === "unknown";
+  const windowFocused = useWindowFocus();
+  const interval = options.interval ?? 30_000;
+  const endpoint = options.endpoint ?? "/api/has-new-deploy";
+  const isUnknown = currentVersion === "unknown";
 
-  let loopInterval = interval < 3_000 ? interval : 3_000;
-  let loopOrNotInterval = !hasNewDeploy && windowFocused ? loopInterval : null;
+  const loopInterval = interval < 3_000 ? interval : 3_000;
+  const loopOrNotInterval = !hasNewDeploy && windowFocused ? loopInterval : null;
 
   useInterval(async () => {
     debug("Looping...");
 
-    let enoughTimeHasPassed =
+    const enoughTimeHasPassed =
       !lastFetched || Date.now() >= lastFetched + interval;
 
     if (enoughTimeHasPassed && !isUnknown) {
       debug("Fetching version");
-      let { version } = await getCurrentVersion(endpoint);
+      const { version } = await getCurrentVersion(endpoint);
       debug(`Version ${version}`);
 
       if (currentVersion !== version) {
@@ -69,9 +69,9 @@ let useHasNewDeploy: UseHasNewDeploy = (options = {}) => {
   }, loopOrNotInterval);
 
   useEffect(() => {
-    let fetchInitialVersion = async () => {
+    const fetchInitialVersion = async () => {
       debug("Fetching initial version");
-      let { version } = await getCurrentVersion(endpoint);
+      const { version } = await getCurrentVersion(endpoint);
       if (version === "unknown") {
         console.warn(
           "[next-deploy-notifications] Could not find current app version."

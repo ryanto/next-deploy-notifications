@@ -5,11 +5,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 type IsEnvironment = () => boolean | Promise<boolean>;
 type GetVersion = () => string | Promise<string>;
 
-let findGitRoot = (path = __dirname): string | false => {
+const findGitRoot = (path = __dirname): string | false => {
   if (existsSync(join(path, ".git/HEAD"))) {
     return path;
   } else {
-    let parent = resolve(path, "..");
+    const parent = resolve(path, "..");
     if (path === parent) {
       return false;
     } else {
@@ -18,21 +18,21 @@ let findGitRoot = (path = __dirname): string | false => {
   }
 };
 
-let isVercel: IsEnvironment = () => !!process.env.VERCEL;
-let getVercelVersion: GetVersion = () => `${process.env.VERCEL_GIT_COMMIT_SHA}`;
+const isVercel: IsEnvironment = () => !!process.env.VERCEL;
+const getVercelVersion: GetVersion = () => `${process.env.VERCEL_GIT_COMMIT_SHA}`;
 
-let isRender: IsEnvironment = () => !!process.env.RENDER;
-let getRenderVersion: GetVersion = () => `${process.env.RENDER_GIT_COMMIT}`;
+const isRender: IsEnvironment = () => !!process.env.RENDER;
+const getRenderVersion: GetVersion = () => `${process.env.RENDER_GIT_COMMIT}`;
 
-let isGit: IsEnvironment = () => !!findGitRoot();
-let getGitVersion: GetVersion = async () => {
-  let root = findGitRoot();
+const isGit: IsEnvironment = () => !!findGitRoot();
+const getGitVersion: GetVersion = async () => {
+  const root = findGitRoot();
 
   if (!root) {
     throw new Error("Cannot call getGitVersion from non git project.");
   }
 
-  let rev = readFileSync(join(root, ".git/HEAD")).toString().trim();
+  const rev = readFileSync(join(root, ".git/HEAD")).toString().trim();
 
   if (rev.indexOf(":") === -1) {
     return rev;
@@ -43,7 +43,7 @@ let getGitVersion: GetVersion = async () => {
   }
 };
 
-let getUnknownVersion: GetVersion = () => "unknown";
+const getUnknownVersion: GetVersion = () => "unknown";
 
 type NextRouteHandler = (
   req: NextApiRequest,
@@ -57,9 +57,9 @@ type Options = {
 type Configure = (options: Options) => Handler;
 type Handler = NextRouteHandler & { configure: Configure };
 
-let makeRouteHandler = (options: Options = {}): Handler => {
-  let route: NextRouteHandler = async (req, res) => {
-    let findVersion = options.version
+const makeRouteHandler = (options: Options = {}): Handler => {
+  const route: NextRouteHandler = async (req, res) => {
+    const findVersion = options.version
       ? options.version()
       : isVercel()
       ? getVercelVersion()
@@ -69,16 +69,16 @@ let makeRouteHandler = (options: Options = {}): Handler => {
       ? getGitVersion()
       : getUnknownVersion();
 
-    let version = await Promise.resolve(findVersion);
+    const version = await Promise.resolve(findVersion);
 
     res.status(200).json({ version });
   };
 
-  let configure = (options: Options) => makeRouteHandler(options);
+  const configure = (options: Options) => makeRouteHandler(options);
 
   return Object.assign(route, { configure });
 };
 
-let APIRoute = makeRouteHandler();
+const APIRoute = makeRouteHandler();
 
 export { APIRoute };

@@ -2395,6 +2395,14 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+next-deploy-notifications@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/next-deploy-notifications/-/next-deploy-notifications-0.1.0.tgz#7b99c11c27f8ef1b46648730da74c9c51e724bcb"
+  integrity sha512-Y0I1ViZ3gRgR4WpCH3vmGVgN+xEpXcRelW99wJmuQcbK425YEIKqxxyzX6j4a+T1gsyAwSqVzVyxf+Q3AYPAjw==
+  dependencies:
+    interval-hooks "^0.2.0"
+    use-window-focus "^1.4.0"
+
 next@12.1.0:
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/next/-/next-12.1.0.tgz#c33d753b644be92fc58e06e5a214f143da61dd5d"
